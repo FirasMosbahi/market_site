@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% bloc title %}
+<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/signup_style.css') }}">
+<title>Sign in</title>
+{% endblock title %}
+
+{% bloc content %}
+<div>
+    <div class="title"><br><br>Hi dear client <br><br><br> Log in <br><br></div>
+    <div>
+        <form method="post">
+            {{form.hidden_tag()}}
+            <div class="label">
+                {{form.name.label(class="label1")}}
+                {{form.name(placeholder = 'name' , class='label2 text-purple-700 border border-purple-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400')}}
+            </div>
+            <div class="label">
+                {{form.password.label(class='label1')}}
+                {{form.password(placeholder = 'Password' , class='label2 text-purple-700 border border-purple-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400')}}
+            </div>
+            <div class="label btn">
+                {{form.submit(class='text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2')}}
+            </div>
+            <div class="label btn">
+                Not signed yet
+            </div>
+            <div class="label btn2">
+                <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                    <a href="{{url_for('signup_page')}}">Sign up</a>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Dashboard</title>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Dashboard_style.css') }}">
+{% endblock title %}
+
+{% block user %}
+    
+{% endblock user %}
+
+{% block content %}
+    <div class="welcome">
+        Welcome dear user <br><br><br><br><br><br>
+        Have a nice experience with me
+    </div>
+    <div class="welcome2">
+        Created by <br><br><br><br> Firas Mosbahi with  <i class="fa-solid fa-heart"></i>  from Tunisia
+    </div>
+{% endblock content %}    
