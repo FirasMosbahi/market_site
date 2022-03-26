@@ -23,9 +23,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{ url_for('market_page') }}" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                        <span class="flex-1 text-white ml-3 whitespace-nowrap"">Items</span>
+                        <span class="flex-1 text-white ml-3 whitespace-nowrap"">Market</span>
                     </a>
                 </li>
                 <li>
@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{url_for('logout_page')}}" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>
                         <span class="flex-1 ml-3 text-white whitespace-nowrap">Log out</span>
                     </a>
@@ -57,7 +57,98 @@
         </div>
     </aside>
     <div class="space_user">
+        <div class="flash">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+               {% for category, message in messages %}
+                {% if category == 'danger' %}
+                <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+                    <span class="text-xl inline-block mr-5 align-middle">
+                      <i class="fas fa-bell"></i>
+                    </span>
+                    <span class="inline-block align-middle mr-8">
+                      <b class="capitalize"> {{category}} : </b> {{message}}
+                    </span>
+                    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
+                      <span>×</span>
+                  
+                    </button>
+                  </div>
+                  <script>
+                    function closeAlert(event){
+                      let element = event.target;
+                      while(element.nodeName !== "BUTTON"){
+                        element = element.parentNode;
+                      }
+                      element.parentNode.parentNode.removeChild(element.parentNode);
+                    }
+                  </script>
+                {% endif %}
+                {% if category == 'success' %}
+                <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500">
+                    <span class="text-xl inline-block mr-5 align-middle">
+                      <i class="fas fa-bell"></i>
+                    </span>
+                    <span class="inline-block align-middle mr-8">
+                      <b class="capitalize"> {{category}} : </b> {{message}}
+                    </span>
+                    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
+                      <span>×</span>
+                  
+                    </button>
+                  </div>
+                  <script>
+                    function closeAlert(event){
+                      let element = event.target;
+                      while(element.nodeName !== "BUTTON"){
+                        element = element.parentNode;
+                      }
+                      element.parentNode.parentNode.removeChild(element.parentNode);
+                    }
+                  </script>
+                {% endif %}
+                {% if category == 'info' %}
+                <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-blue-500">
+                    <span class="text-xl inline-block mr-5 align-middle">
+                      <i class="fas fa-bell"></i>
+                    </span>
+                    <span class="inline-block align-middle mr-8">
+                      <b class="capitalize"> {{category}} : </b> {{message}}
+                    </span>
+                    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
+                      <span>×</span>
+                  
+                    </button>
+                  </div>
+                  <script>
+                    function closeAlert(event){
+                      let element = event.target;
+                      while(element.nodeName !== "BUTTON"){
+                        element = element.parentNode;
+                      }
+                      element.parentNode.parentNode.removeChild(element.parentNode);
+                    }
+                  </script>
+                {% endif %}
+               {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
         <div class="user text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 dark:border-gray-700">
+        {% if current_user.is_authenticated %}
+            <div class="users">
+                <div class="user_info">
+                    user name : {{current_user.name}}
+                </div>
+                <div class="user_info">
+                    budget : {{current_user.solde}}
+                </div>
+            </div>
+        {% else %}
+            <div class="no_user">
+                No user is authenified, please login or sign up
+            </div>
+        {% endif %}
         </div>
         <div class="content text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 dark:border-gray-700">
             {% block content %}  {% endblock content %}
